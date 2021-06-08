@@ -7,6 +7,7 @@ import io.pidabrow.shiftmanager.dto.WorkerCreateDto;
 import io.pidabrow.shiftmanager.dto.WorkerDto;
 import io.pidabrow.shiftmanager.exception.ResourceNotFoundException;
 import io.pidabrow.shiftmanager.mapper.WorkerMapper;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,14 +15,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class WorkerService {
     private final WorkerDao workerDao;
     private final WorkerMapper workerMapper;
-
-    public WorkerService(WorkerDao workerDao, WorkerMapper workerMapper) {
-        this.workerDao = workerDao;
-        this.workerMapper = workerMapper;
-    }
 
     @Transactional
     public WorkerDto createWorker(WorkerCreateDto workerCreateDto) {

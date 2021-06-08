@@ -9,10 +9,13 @@ import io.pidabrow.shiftmanager.dto.ShiftAssignmentCreateDto;
 import io.pidabrow.shiftmanager.dto.ShiftAssignmentDto;
 import io.pidabrow.shiftmanager.exception.DomainException;
 import io.pidabrow.shiftmanager.mapper.ShiftAssignmentMapper;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDate;
@@ -28,8 +31,14 @@ public class ShiftAssignmentServiceTest {
 
     @Mock private ShiftAssignmentDao shiftAssignmentDao;
     @Mock private WorkerDao workerDao;
-    @Mock private ShiftAssignmentMapper shiftAssignmentMapper;
-    @InjectMocks private ShiftAssignmentService shiftAssignmentService;
+    private ShiftAssignmentMapper shiftAssignmentMapper;
+    private ShiftAssignmentService shiftAssignmentService;
+
+    @BeforeEach
+    void initShiftAssignmentService() {
+        shiftAssignmentMapper = Mockito.spy(new ShiftAssignmentMapper(workerDao));
+        shiftAssignmentService = new ShiftAssignmentService(shiftAssignmentDao, workerDao, shiftAssignmentMapper);
+    }
 
     @Test
     public void shouldGetShiftAssignmentsForWorker() {
@@ -65,6 +74,10 @@ public class ShiftAssignmentServiceTest {
         List<ShiftAssignmentDto> shiftAssignmentDtos = shiftAssignmentService.getShiftAssignmentsForWorker(workerId);
 
         assertThat(shiftAssignmentDtos.size()).isEqualTo(2);
+        assertThat(shiftAssignmentDtos).containsExactlyInAnyOrder(
+                shiftAssignmentMapper.toDto(shift1),
+                shiftAssignmentMapper.toDto(shift2)
+        );
     }
 
     @Test
@@ -91,7 +104,11 @@ public class ShiftAssignmentServiceTest {
 
         // then
         List<ShiftAssignmentDto> shiftAssignmentDtos = shiftAssignmentService.getShiftAssignmentsForWorker(workerId);
+
         assertThat(shiftAssignmentDtos.size()).isEqualTo(1);
+        assertThat(shiftAssignmentDtos).containsExactlyInAnyOrder(
+                shiftAssignmentMapper.toDto(shift1)
+        );
     }
 
     @Test

@@ -10,6 +10,7 @@ import io.pidabrow.shiftmanager.dto.ShiftAssignmentDto;
 import io.pidabrow.shiftmanager.exception.DomainException;
 import io.pidabrow.shiftmanager.exception.ResourceNotFoundException;
 import io.pidabrow.shiftmanager.mapper.ShiftAssignmentMapper;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,19 +19,12 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class ShiftAssignmentService {
 
     private final ShiftAssignmentDao shiftAssignmentDao;
     private final WorkerDao workerDao;
     private final ShiftAssignmentMapper shiftAssignmentMapper;
-
-    public ShiftAssignmentService(ShiftAssignmentDao shiftAssignmentDao,
-                                  WorkerDao workerDao,
-                                  ShiftAssignmentMapper shiftAssignmentMapper) {
-        this.shiftAssignmentDao = shiftAssignmentDao;
-        this.workerDao = workerDao;
-        this.shiftAssignmentMapper = shiftAssignmentMapper;
-    }
 
     @Transactional
     public ShiftAssignmentDto createShiftAssignment(ShiftAssignmentCreateDto dto) {

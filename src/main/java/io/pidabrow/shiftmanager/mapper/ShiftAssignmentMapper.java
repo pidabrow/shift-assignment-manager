@@ -6,17 +6,16 @@ import io.pidabrow.shiftmanager.domain.Worker;
 import io.pidabrow.shiftmanager.dto.ShiftAssignmentCreateDto;
 import io.pidabrow.shiftmanager.dto.ShiftAssignmentDto;
 import io.pidabrow.shiftmanager.exception.ResourceNotFoundException;
+import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
+@RequiredArgsConstructor
 public class ShiftAssignmentMapper {
 
-    private WorkerDao workerDao;
-
-    public ShiftAssignmentMapper(WorkerDao workerDao) {
-        this.workerDao = workerDao;
-    }
+    private final WorkerDao workerDao;
 
     public ShiftAssignment toEntity(ShiftAssignmentCreateDto dto) {
         final Long workerId = dto.getWorkerId();
