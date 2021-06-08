@@ -18,6 +18,7 @@ import javax.validation.Valid;
 import static org.springframework.http.HttpStatus.CREATED;
 
 @RequiredArgsConstructor
+@RestController
 public class WorkerController {
 
     private final ValidationService validationService;

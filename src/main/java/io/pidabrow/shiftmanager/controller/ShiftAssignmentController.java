@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RequiredArgsConstructor
+@RestController
 public class ShiftAssignmentController {
 
     private final ShiftAssignmentService shiftAssignmentService;
