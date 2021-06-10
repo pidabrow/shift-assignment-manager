@@ -29,7 +29,9 @@ public class WorkerService {
 
     @Transactional(readOnly = true)
     public FullWorkerDto findWorkerByIdEagerly(Long id) {
-        return workerMapper.toFullDto(workerDao.findWorkerByIdEagerly(id));
+        return workerMapper.toFullDto(workerDao.findWorkerByIdEagerly(id)
+            .orElseThrow(() -> new ResourceNotFoundException(Worker.class, id))
+        );
     }
 
     @Transactional(readOnly = true)
@@ -45,7 +47,7 @@ public class WorkerService {
         final Worker toUpdate = findByIdInternal(workerDto.getId());
         final Worker updated = workerMapper.merge(toUpdate, workerDto);
 
-        return workerMapper.toDto(workerDao.save(updated));
+        return workerMapper.toDto(updated);
     }
 
     @Transactional
