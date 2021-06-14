@@ -7,9 +7,9 @@ import io.pidabrow.shiftmanager.dao.WorkerDao;
 import io.pidabrow.shiftmanager.domain.Shift;
 import io.pidabrow.shiftmanager.domain.ShiftAssignment;
 import io.pidabrow.shiftmanager.domain.Worker;
-import io.pidabrow.shiftmanager.dto.RemoveShiftAssignmentDto;
-import io.pidabrow.shiftmanager.dto.ShiftAssignmentCreateDto;
-import io.pidabrow.shiftmanager.dto.ShiftAssignmentDto;
+import io.pidabrow.shiftmanager.dto.request.ShiftAssignmentRemoveDto;
+import io.pidabrow.shiftmanager.dto.request.ShiftAssignmentCreateDto;
+import io.pidabrow.shiftmanager.dto.response.ShiftAssignmentDto;
 import io.pidabrow.shiftmanager.mapper.ShiftAssignmentMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -200,7 +200,7 @@ public class ShiftAssignmentControllerTest {
                 .shift(Shift.SHIFT_8_16)
                 .build());
 
-        var removeShiftAssignmentDto = RemoveShiftAssignmentDto.builder()
+        var removeShiftAssignmentDto = ShiftAssignmentRemoveDto.builder()
                 .shiftDate(today)
                 .workerId(worker.getId())
                 .build();
@@ -215,7 +215,7 @@ public class ShiftAssignmentControllerTest {
 
     @Test
     public void shouldNotDeleteShiftAssignment_missingParameters() throws Exception {
-        var removeShiftAssignmentDto = RemoveShiftAssignmentDto.builder().build();
+        var removeShiftAssignmentDto = ShiftAssignmentRemoveDto.builder().build();
 
         mockMvc.perform(delete("/api/shifts")
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
@@ -230,7 +230,7 @@ public class ShiftAssignmentControllerTest {
     @Test
     public void shouldNotDeleteShiftAssignment_shiftAssignmentDoesntExist() throws Exception {
         var today = LocalDate.now();
-        var removeShiftAssignmentDto = RemoveShiftAssignmentDto.builder()
+        var removeShiftAssignmentDto = ShiftAssignmentRemoveDto.builder()
                 .workerId(worker.getId())
                 .shiftDate(today)
                 .build();

@@ -4,9 +4,9 @@ import io.pidabrow.shiftmanager.dao.ShiftAssignmentDao;
 import io.pidabrow.shiftmanager.dao.WorkerDao;
 import io.pidabrow.shiftmanager.domain.ShiftAssignment;
 import io.pidabrow.shiftmanager.domain.Worker;
-import io.pidabrow.shiftmanager.dto.RemoveShiftAssignmentDto;
-import io.pidabrow.shiftmanager.dto.ShiftAssignmentCreateDto;
-import io.pidabrow.shiftmanager.dto.ShiftAssignmentDto;
+import io.pidabrow.shiftmanager.dto.request.ShiftAssignmentRemoveDto;
+import io.pidabrow.shiftmanager.dto.request.ShiftAssignmentCreateDto;
+import io.pidabrow.shiftmanager.dto.response.ShiftAssignmentDto;
 import io.pidabrow.shiftmanager.exception.DomainException;
 import io.pidabrow.shiftmanager.exception.ResourceNotFoundException;
 import io.pidabrow.shiftmanager.mapper.ShiftAssignmentMapper;
@@ -44,7 +44,7 @@ public class ShiftAssignmentService {
     }
 
     @Transactional
-    public void removeShiftAssignment(RemoveShiftAssignmentDto dto) {
+    public void removeShiftAssignment(ShiftAssignmentRemoveDto dto) {
         var workerId = dto.getWorkerId();
         var shiftDate = dto.getShiftDate();
 

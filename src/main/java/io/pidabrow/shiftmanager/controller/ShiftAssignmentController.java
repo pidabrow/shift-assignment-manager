@@ -1,8 +1,8 @@
 package io.pidabrow.shiftmanager.controller;
 
-import io.pidabrow.shiftmanager.dto.RemoveShiftAssignmentDto;
-import io.pidabrow.shiftmanager.dto.ShiftAssignmentCreateDto;
-import io.pidabrow.shiftmanager.dto.ShiftAssignmentDto;
+import io.pidabrow.shiftmanager.dto.request.ShiftAssignmentRemoveDto;
+import io.pidabrow.shiftmanager.dto.request.ShiftAssignmentCreateDto;
+import io.pidabrow.shiftmanager.dto.response.ShiftAssignmentDto;
 import io.pidabrow.shiftmanager.service.ShiftAssignmentService;
 import io.pidabrow.shiftmanager.service.ValidationService;
 import io.swagger.annotations.ApiOperation;
@@ -48,7 +48,7 @@ public class ShiftAssignmentController {
             @ApiResponse(code = 400, message = "Cannot delete Shift Assignment due to mandatory parameter missing or wrong format."),
             @ApiResponse(code = 404, message = "A Shift Assignment with the specified worker id and shift date was not found.")
     })
-    public ResponseEntity<?> removeShiftAssignment(@Valid @RequestBody RemoveShiftAssignmentDto dto, BindingResult bindingResult) {
+    public ResponseEntity<?> removeShiftAssignment(@Valid @RequestBody ShiftAssignmentRemoveDto dto, BindingResult bindingResult) {
         ResponseEntity<?> validationError = validationService.validateBindingResult(bindingResult);
         if (validationError != null) {
             return validationError;

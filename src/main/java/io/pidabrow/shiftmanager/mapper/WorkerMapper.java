@@ -1,10 +1,10 @@
 package io.pidabrow.shiftmanager.mapper;
 
 import io.pidabrow.shiftmanager.domain.Worker;
-import io.pidabrow.shiftmanager.dto.FullWorkerDto;
-import io.pidabrow.shiftmanager.dto.ShiftAssignmentDto;
-import io.pidabrow.shiftmanager.dto.WorkerCreateDto;
-import io.pidabrow.shiftmanager.dto.WorkerDto;
+import io.pidabrow.shiftmanager.dto.response.FullWorkerDto;
+import io.pidabrow.shiftmanager.dto.response.ShiftAssignmentDto;
+import io.pidabrow.shiftmanager.dto.request.WorkerCreateDto;
+import io.pidabrow.shiftmanager.dto.request.WorkerDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

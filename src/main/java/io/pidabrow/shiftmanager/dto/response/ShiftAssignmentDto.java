@@ -1,4 +1,4 @@
-package io.pidabrow.shiftmanager.dto;
+package io.pidabrow.shiftmanager.dto.response;
 
 import io.pidabrow.shiftmanager.domain.Shift;
 import lombok.*;
@@ -10,8 +10,7 @@ import java.time.LocalDate;
 @Value
 @Builder
 public class ShiftAssignmentDto {
-    @NotNull
-    private Long id;
+    @NotNull Long id;
 
     @NotNull
     private Long workerId;

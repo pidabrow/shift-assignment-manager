@@ -1,4 +1,4 @@
-package io.pidabrow.shiftmanager.dto;
+package io.pidabrow.shiftmanager.dto.response;
 
 import lombok.*;
 

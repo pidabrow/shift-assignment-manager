@@ -1,6 +1,6 @@
 package io.pidabrow.shiftmanager.controller;
 
-import io.pidabrow.shiftmanager.dto.ExceptionResponseDto;
+import io.pidabrow.shiftmanager.dto.response.ExceptionResponseDto;
 import io.pidabrow.shiftmanager.exception.DomainException;
 import io.pidabrow.shiftmanager.exception.ResourceNotFoundException;
 import org.springframework.http.ResponseEntity;

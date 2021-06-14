@@ -2,9 +2,9 @@ package io.pidabrow.shiftmanager.service;
 
 import io.pidabrow.shiftmanager.dao.WorkerDao;
 import io.pidabrow.shiftmanager.domain.Worker;
-import io.pidabrow.shiftmanager.dto.FullWorkerDto;
-import io.pidabrow.shiftmanager.dto.WorkerCreateDto;
-import io.pidabrow.shiftmanager.dto.WorkerDto;
+import io.pidabrow.shiftmanager.dto.response.FullWorkerDto;
+import io.pidabrow.shiftmanager.dto.request.WorkerCreateDto;
+import io.pidabrow.shiftmanager.dto.request.WorkerDto;
 import io.pidabrow.shiftmanager.exception.ResourceNotFoundException;
 import io.pidabrow.shiftmanager.mapper.WorkerMapper;
 import lombok.RequiredArgsConstructor;
@@ -43,11 +43,11 @@ public class WorkerService {
     }
 
     @Transactional
-    public WorkerDto updateWorker(WorkerDto workerDto) {
+    public FullWorkerDto updateWorker(WorkerDto workerDto) {
         final Worker toUpdate = findByIdInternal(workerDto.getId());
         final Worker updated = workerMapper.merge(toUpdate, workerDto);
 
-        return workerMapper.toDto(updated);
+        return workerMapper.toFullDto(updated);
     }
 
     @Transactional

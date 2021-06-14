@@ -1,8 +1,8 @@
 package io.pidabrow.shiftmanager.controller;
 
-import io.pidabrow.shiftmanager.dto.FullWorkerDto;
-import io.pidabrow.shiftmanager.dto.WorkerCreateDto;
-import io.pidabrow.shiftmanager.dto.WorkerDto;
+import io.pidabrow.shiftmanager.dto.response.FullWorkerDto;
+import io.pidabrow.shiftmanager.dto.request.WorkerCreateDto;
+import io.pidabrow.shiftmanager.dto.request.WorkerDto;
 import io.pidabrow.shiftmanager.service.ValidationService;
 import io.pidabrow.shiftmanager.service.WorkerService;
 import io.swagger.annotations.ApiOperation;

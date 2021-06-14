@@ -1,4 +1,4 @@
-package io.pidabrow.shiftmanager.dto;
+package io.pidabrow.shiftmanager.dto.request;
 
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -13,6 +13,7 @@ import javax.validation.constraints.NotNull;
 public class WorkerDto {
     @NotNull
     private Long id;
+
     @NotBlank
     private String fullName;
 }
