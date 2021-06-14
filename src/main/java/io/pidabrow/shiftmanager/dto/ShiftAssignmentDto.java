@@ -19,6 +19,6 @@ public class ShiftAssignmentDto {
     @NotBlank
     private Shift shift;
 
-    @NotBlank
+    @NotNull
     private LocalDate shiftDate;
 }

@@ -3,7 +3,6 @@ package io.pidabrow.shiftmanager.controller;
 import io.pidabrow.shiftmanager.dto.RemoveShiftAssignmentDto;
 import io.pidabrow.shiftmanager.dto.ShiftAssignmentCreateDto;
 import io.pidabrow.shiftmanager.dto.ShiftAssignmentDto;
-import io.pidabrow.shiftmanager.dto.WorkerDto;
 import io.pidabrow.shiftmanager.service.ShiftAssignmentService;
 import io.pidabrow.shiftmanager.service.ValidationService;
 import io.swagger.annotations.ApiOperation;
@@ -15,6 +14,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+
+import static org.springframework.http.HttpStatus.CREATED;
 
 @RequiredArgsConstructor
 @RestController
@@ -37,7 +38,7 @@ public class ShiftAssignmentController {
             return validationError;
         }
 
-        return ResponseEntity.ok(shiftAssignmentService.createShiftAssignment(dto));
+        return new ResponseEntity(shiftAssignmentService.createShiftAssignment(dto), CREATED);
     }
 
     @DeleteMapping("/api/shifts")
