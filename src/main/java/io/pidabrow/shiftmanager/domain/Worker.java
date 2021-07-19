@@ -22,6 +22,9 @@ public class Worker {
     @Setter
     private String fullName;
 
+    @Setter
+    private String phoneNumber;
+
     @OneToMany(fetch = FetchType.LAZY, mappedBy="worker", orphanRemoval = true)
     private Set<ShiftAssignment> shiftAssignments;
 

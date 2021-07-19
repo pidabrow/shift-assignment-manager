@@ -4,6 +4,7 @@ import io.pidabrow.shiftmanager.dao.ShiftAssignmentDao;
 import io.pidabrow.shiftmanager.dao.WorkerDao;
 import io.pidabrow.shiftmanager.domain.ShiftAssignment;
 import io.pidabrow.shiftmanager.domain.Worker;
+import io.pidabrow.shiftmanager.dto.SmsDto;
 import io.pidabrow.shiftmanager.dto.request.ShiftAssignmentRemoveDto;
 import io.pidabrow.shiftmanager.dto.request.ShiftAssignmentCreateDto;
 import io.pidabrow.shiftmanager.dto.response.ShiftAssignmentDto;
@@ -25,6 +26,7 @@ public class ShiftAssignmentService {
     private final ShiftAssignmentDao shiftAssignmentDao;
     private final WorkerDao workerDao;
     private final ShiftAssignmentMapper shiftAssignmentMapper;
+    private final SmsService smsService;
 
     @Transactional
     public ShiftAssignmentDto createShiftAssignment(ShiftAssignmentCreateDto dto) {
@@ -35,12 +37,16 @@ public class ShiftAssignmentService {
             throw new ResourceNotFoundException(Worker.class, workerId);
         }
 
-        if(!shiftAssignmentDao.existsShiftAssignmentByWorkerIdAndShiftDate(workerId, shiftDate)) {
-            ShiftAssignment shiftAssignment = shiftAssignmentMapper.toEntity(dto);
-            return shiftAssignmentMapper.toDto(shiftAssignmentDao.save(shiftAssignment));
-        } else {
+        if(shiftAssignmentDao.existsShiftAssignmentByWorkerIdAndShiftDate(workerId, shiftDate)) {
             throw new DomainException("There's already shift assignment for Worker " + workerId + " for " + dto.getShiftDate());
         }
+
+        ShiftAssignment shiftAssignment = shiftAssignmentMapper.toEntity(dto);
+        ShiftAssignmentDto shiftAssignmentDto = shiftAssignmentMapper.toDto(shiftAssignmentDao.save(shiftAssignment));
+
+        smsService.sendSmsNotification(SmsDto.of(shiftAssignment));
+
+        return shiftAssignmentDto;
     }
 
     @Transactional

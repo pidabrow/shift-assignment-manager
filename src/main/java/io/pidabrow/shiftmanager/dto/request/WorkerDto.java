@@ -16,4 +16,7 @@ public class WorkerDto {
 
     @NotBlank
     private String fullName;
+
+    @NotBlank
+    private String phoneNumber;
 }

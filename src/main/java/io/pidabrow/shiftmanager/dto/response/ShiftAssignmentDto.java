@@ -7,17 +7,18 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
-@Value
+@Data
 @Builder
 public class ShiftAssignmentDto {
-    @NotNull Long id;
+    @NotNull
+    private final Long id;
 
     @NotNull
-    private Long workerId;
+    private final Long workerId;
 
     @NotBlank
-    private Shift shift;
+    private final Shift shift;
 
     @NotNull
-    private LocalDate shiftDate;
+    private final LocalDate shiftDate;
 }

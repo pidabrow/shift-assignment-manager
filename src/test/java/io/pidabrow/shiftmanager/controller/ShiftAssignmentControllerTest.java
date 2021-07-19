@@ -1,7 +1,6 @@
 package io.pidabrow.shiftmanager.controller;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import io.pidabrow.shiftmanager.dao.ShiftAssignmentDao;
 import io.pidabrow.shiftmanager.dao.WorkerDao;
 import io.pidabrow.shiftmanager.domain.Shift;
@@ -14,10 +13,7 @@ import io.pidabrow.shiftmanager.mapper.ShiftAssignmentMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.test.web.servlet.MockMvc;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -30,12 +26,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@SpringBootTest
-@AutoConfigureMockMvc
-public class ShiftAssignmentControllerTest {
 
-    @Autowired private MockMvc mockMvc;
-    @Autowired private ObjectMapper objectMapper;
+public class ShiftAssignmentControllerTest extends GenericTestBase {
+
     @Autowired private ShiftAssignmentDao shiftAssignmentDao;
     @Autowired private WorkerDao workerDao;
     @Autowired private ShiftAssignmentMapper shiftAssignmentMapper;

@@ -29,13 +29,14 @@ public class ShiftAssignmentServiceTest {
 
     @Mock private ShiftAssignmentDao shiftAssignmentDao;
     @Mock private WorkerDao workerDao;
+    @Mock private SmsService smsService;
     private ShiftAssignmentMapper shiftAssignmentMapper;
     private ShiftAssignmentService shiftAssignmentService;
 
     @BeforeEach
     void initShiftAssignmentService() {
         shiftAssignmentMapper = Mockito.spy(new ShiftAssignmentMapper(workerDao));
-        shiftAssignmentService = new ShiftAssignmentService(shiftAssignmentDao, workerDao, shiftAssignmentMapper);
+        shiftAssignmentService = new ShiftAssignmentService(shiftAssignmentDao, workerDao, shiftAssignmentMapper, smsService);
     }
 
     @Test

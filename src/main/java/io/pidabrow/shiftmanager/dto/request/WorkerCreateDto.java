@@ -11,4 +11,7 @@ import javax.validation.constraints.NotBlank;
 public class WorkerCreateDto {
     @NotBlank
     private String fullName;
+
+    @NotBlank
+    private String phoneNumber;
 }

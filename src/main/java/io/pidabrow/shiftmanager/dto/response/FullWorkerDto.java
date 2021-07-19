@@ -7,14 +7,17 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 
 
-@Value
+@Data
 @Builder
 public class FullWorkerDto {
     @NotNull
-    private Long id;
+    private final Long id;
 
     @NotBlank
-    private String fullName;
+    private final String fullName;
 
-    private List<ShiftAssignmentDto> shifts;
+    @NotBlank
+    private final String phoneNumber;
+
+    private final List<ShiftAssignmentDto> shifts;
 }

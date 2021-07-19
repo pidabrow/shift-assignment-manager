@@ -20,6 +20,7 @@ public class WorkerMapper {
     public Worker toEntity(WorkerCreateDto workerCreateDto) {
         return Worker.builder()
                 .fullName(workerCreateDto.getFullName())
+                .phoneNumber(workerCreateDto.getPhoneNumber())
                 .build();
     }
 
@@ -27,6 +28,7 @@ public class WorkerMapper {
         return WorkerDto.builder()
                 .id(worker.getId())
                 .fullName(worker.getFullName())
+                .phoneNumber(worker.getPhoneNumber())
                 .build();
     }
 
@@ -38,12 +40,14 @@ public class WorkerMapper {
         return FullWorkerDto.builder()
                 .id(worker.getId())
                 .fullName(worker.getFullName())
+                .phoneNumber(worker.getPhoneNumber())
                 .shifts(shiftAssignmentDtos)
                 .build();
     }
 
     public Worker merge(Worker worker, WorkerDto workerDto) {
         worker.setFullName(workerDto.getFullName());
+        worker.setPhoneNumber(workerDto.getPhoneNumber());
 
         return worker;
     }
